@@ -3,9 +3,10 @@
 Static landing site for **Shellback Studio** (`shellbackstudio.xyz`), hosted on
 GitHub Pages.
 
-**Status: v1 built per team brief (tagline "Crafting what's missing.", webfont
-pair, umbrella scope) — pending user browser review → GitHub repo + Pages +
-Porkbun DNS.**
+**Status: DEPLOYED 2026-09-11 — live at https://shellbackstudio.xyz (apex;
+`www` redirects to apex), GitHub Pages from this repo. All verification gates
+passed over HTTPS on deploy day. Only residual: "Enforce HTTPS" tick in the
+Pages UI (cert already live).**
 
 > **History:** the increment-0 draft (inline-styled `index.html` +
 > `8bells/privacy/index.html`) is preserved in git history.
@@ -48,12 +49,12 @@ written to read well on phones down to 360dp wide.
 
 Work top to bottom. Every step is a checkbox.
 
-- [ ] **1. Create the GitHub repo**
+- [x] **1. Create the GitHub repo**
   In a browser: github.com → **New repository** → name `shellback-studio-site`,
   visibility **Public**. Do not initialize with a README or .gitignore — this
   directory already contains the files.
 
-- [ ] **2. Push this directory to the repo**
+- [x] **2. Push this directory to the repo**
   From inside this directory (`C:\Users\pdxpu\dev\shellback-studio-site`):
 
   ```powershell
@@ -63,17 +64,19 @@ Work top to bottom. Every step is a checkbox.
   git push -u origin main
   ```
 
-- [ ] **3. Enable GitHub Pages**
+- [x] **3. Enable GitHub Pages**
   Repo → **Settings** → **Pages** → Source: **Deploy from a branch** → branch
   `main`, folder `/ (root)` → **Save**.
 
-- [ ] **4. Set the custom domain**
+- [x] **4. Set the custom domain**
   Settings → **Pages** → **Custom domain**: `shellbackstudio.xyz` (apex) →
   **Save**. The `www` variant is covered too: once the `www` CNAME in step 5
   exists, `www.shellbackstudio.xyz` routes to the same Pages site (GitHub
-  redirects it to the apex).
+  redirects it to the apex). GitHub auto-committed a CNAME file to this repo
+  when the domain was saved (commit "Create CNAME"); pull before pushing so
+  local and remote don't diverge.
 
-- [ ] **5. Add the Porkbun DNS records**
+- [x] **5. Add the Porkbun DNS records**
   At Porkbun (domain `shellbackstudio.xyz`), create exactly these records:
 
   | Type  | Host | Value                  |
@@ -88,13 +91,24 @@ Work top to bottom. Every step is a checkbox.
   parking or forwarding records on `@` or `www`, remove them so only these
   remain.)
 
+  (2026-09-11 field notes: Porkbun's current UI no longer displays a blank host
+  as `@` — type `@` or the bare domain; both normalize to the apex. Apex parking
+  is an ALIAS record to `pixie.porkbun.com` that MUST be deleted before the A
+  records are accepted — an ALIAS and A records cannot coexist on the same host.
+  There is no "URL Forward" tab in the current UI. Pre-existing mail-provider
+  records (Purelymail CNAMEs, MX, TXT) coexist untouched.)
+
 - [ ] **6. Enforce HTTPS**
   After DNS propagates: repo → Settings → Pages → tick **Enforce HTTPS**.
   If the checkbox is greyed out, the TLS certificate is still issuing — wait a
-  few minutes and reload the page.
+  few minutes and reload the page. (Cert confirmed live 2026-09-11 — https
+  fetches to apex and www both served valid TLS before the tick; the
+  settings-page "provisioning" text lags reality.)
 
-- [ ] **7. Verification gates**
-  - [ ] `https://shellbackstudio.xyz` loads the landing page.
-  - [ ] `https://shellbackstudio.xyz/8bells/privacy/` loads the privacy
+- [x] **7. Verification gates**
+  - [x] `https://shellbackstudio.xyz` loads the landing page.
+        (verified 2026-09-11)
+  - [x] `https://shellbackstudio.xyz/8bells/privacy/` loads the privacy
         policy. **REQUIRED** — this URL is on the critical path: the 8 Bells
         Play Store closed test cannot publish until it is live.
+        (verified 2026-09-11)
