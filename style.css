@@ -1,0 +1,261 @@
+/* ============================================================
+   Shellback Studio — shared stylesheet
+   Palette: the 8 Bells instrument. Field navy, raised panel
+   navy, brass (hairlines at ~45% alpha where full brass is too
+   loud), cream ink, dial cream accents.
+   Type: Playfair Display (wordmark, tagline, headings),
+   Source Sans 3 (body) — Google Fonts CDN with system fallbacks.
+   Mobile-first; hairline brass rules are the only ornament.
+   ============================================================ */
+
+:root {
+  /* Palette */
+  --navy: #081727;                            /* field — page background */
+  --navy-panel: #0D2137;                      /* raised panels / cards */
+  --brass: #C9A227;                           /* full brass — wordmark, headings, links */
+  --brass-hairline: rgba(201, 162, 39, 0.45); /* rules & card borders */
+  --ink: #F2F4F6;                             /* cream ink — body text */
+  --ink-dim: rgba(242, 244, 246, 0.72);       /* secondary text */
+  --dial: #EFE6D0;                            /* dial cream — accents */
+
+  /* Type */
+  --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-body: "Source Sans 3", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+/* ---------- reset ---------- */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ---------- base ---------- */
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--navy);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1.0625rem; /* 17px — phone-first reading size */
+  line-height: 1.65;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 3.5rem 1.25rem 3rem;
+}
+
+main {
+  width: 100%;
+  max-width: 42rem;
+}
+
+.home main {
+  max-width: 46rem; /* the index cards get a little more air */
+}
+
+::selection {
+  background: var(--brass);
+  color: var(--navy);
+}
+
+@media (min-width: 48em) {
+  body {
+    padding: 5rem 2rem 4rem;
+    font-size: 1.125rem;
+  }
+}
+
+/* ---------- masthead ---------- */
+
+.wordmark {
+  font-family: var(--font-display);
+  font-variant: small-caps;
+  font-weight: 600;
+  font-size: 1.8125rem; /* 29px */
+  letter-spacing: 0.16em;
+  color: var(--brass);
+}
+
+.wordmark a {
+  color: inherit;
+  border-bottom: 0;
+}
+
+.wordmark a:hover,
+.wordmark a:focus-visible {
+  color: var(--dial);
+}
+
+.tagline,
+.page-title {
+  font-family: var(--font-display);
+  font-variant: small-caps;
+  font-weight: 700;
+  color: var(--ink);
+  margin-top: 1.5rem;
+}
+
+.tagline {
+  font-size: clamp(2.0rem, 6vw, 2.0rem);
+  line-height: 1.15;
+  margin-top: 0.5rem; /* sub-line to the wordmark — tighter than the shared page-title gap */
+}
+
+.page-title {
+  font-size: clamp(1.9rem, 6.5vw, 2.75rem);
+  line-height: 1.2;
+}
+
+.philosophy {
+  margin-top: 1.25rem;
+  color: var(--ink-dim);
+  max-width: 36em;
+}
+
+.effective {
+  margin-top: 0.75rem;
+  color: var(--ink-dim);
+}
+
+/* ---------- ornament: hairline rules only ---------- */
+
+.rule {
+  border: 0;
+  border-top: 1px solid var(--brass-hairline);
+  margin: 2.5rem 0;
+}
+
+/* ---------- sections & headings ---------- */
+
+section {
+  margin: 2.5rem 0;
+}
+
+h2 {
+  font-family: var(--font-display);
+  font-variant: small-caps;
+  font-weight: 600;
+  font-size: 1.5rem;
+  letter-spacing: 0.05em;
+  color: var(--brass);
+  margin-bottom: 0.9rem;
+}
+
+p + p {
+  margin-top: 0.8rem;
+}
+
+/* ---------- cards ("Things we've made") ---------- */
+
+.cards {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 48em) {
+  .cards {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+}
+
+.card {
+  background: var(--navy-panel);
+  border: 1px solid var(--brass-hairline);
+  border-radius: 4px;
+  padding: 1.5rem 1.35rem;
+}
+
+.card h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.35rem;
+  color: var(--dial);
+  margin-bottom: 0.55rem;
+}
+
+.card p {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.card a {
+  display: inline-block;
+  margin-top: 0.9rem;
+  font-size: 1rem;
+}
+
+/* ---------- lists ---------- */
+
+ul {
+  list-style: none;
+  margin-top: 0.5rem;
+}
+
+li {
+  position: relative;
+  padding-left: 1.4rem;
+  margin-top: 0.55rem;
+}
+
+/* quiet brass marker instead of a default bullet */
+li::before {
+  content: "\2013"; /* en dash */
+  position: absolute;
+  left: 0;
+  color: var(--brass);
+}
+
+/* ---------- links ---------- */
+
+a {
+  color: var(--brass);
+  text-decoration: none;
+  border-bottom: 1px solid var(--brass-hairline);
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+a:hover,
+a:focus-visible {
+  color: var(--dial);
+  border-bottom-color: var(--dial);
+}
+
+a:focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: 3px;
+}
+
+strong {
+  color: var(--dial);
+  font-weight: 600;
+}
+
+/* ---------- footer ---------- */
+
+footer {
+  margin-top: 3.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--brass-hairline);
+  color: var(--ink-dim);
+  font-size: 0.9375rem;
+}
+
+footer p + p {
+  margin-top: 0.5rem;
+}
+
+/* ---------- motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
