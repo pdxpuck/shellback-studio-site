@@ -5,8 +5,8 @@ GitHub Pages.
 
 **Status: DEPLOYED 2026-09-11 — live at https://shellbackstudio.xyz (apex;
 `www` redirects to apex), GitHub Pages from this repo. All verification gates
-passed over HTTPS on deploy day. Only residual: "Enforce HTTPS" tick in the
-Pages UI (cert already live).**
+passed over HTTPS on deploy day. Enforce HTTPS ticked; domain ownership
+verified via Google Search Console (DNS TXT) and Play Console same day.**
 
 > **History:** the increment-0 draft (inline-styled `index.html` +
 > `8bells/privacy/index.html`) is preserved in git history.
@@ -98,12 +98,12 @@ Work top to bottom. Every step is a checkbox.
   There is no "URL Forward" tab in the current UI. Pre-existing mail-provider
   records (Purelymail CNAMEs, MX, TXT) coexist untouched.)
 
-- [ ] **6. Enforce HTTPS**
+- [x] **6. Enforce HTTPS**
   After DNS propagates: repo → Settings → Pages → tick **Enforce HTTPS**.
   If the checkbox is greyed out, the TLS certificate is still issuing — wait a
   few minutes and reload the page. (Cert confirmed live 2026-09-11 — https
   fetches to apex and www both served valid TLS before the tick; the
-  settings-page "provisioning" text lags reality.)
+  settings-page "provisioning" text lags reality.) (ticked 2026-09-11)
 
 - [x] **7. Verification gates**
   - [x] `https://shellbackstudio.xyz` loads the landing page.
